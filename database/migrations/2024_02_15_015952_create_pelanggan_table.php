@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('nama_pelanggan');
             $table->string('no_telp');
             $table->string('alamat');
+            $table->string('password');
             $table->enum('user_type', ['kasir', 'pelanggan'])->default('pelanggan');
             $table->timestamps();
         });

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/wal', function () {
     return view('welcome');
 });
+Route::get('/pelanggan', function () {
+    return view('tes');
+});
+
+
+// Auth
+Route::get('/',[auth::class,'login']);
+Route::post('/',[auth::class,'masuk'])->name('login');
