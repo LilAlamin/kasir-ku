@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/wal', function () {
-    return view('welcome');
+    return view('kasir.index');
 });
 Route::get('/pelanggan', function () {
     return view('tes');
