@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\auth;
 use App\Http\Controllers\KasirController;
 use Illuminate\Support\Facades\Route;
@@ -16,9 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/admin', function () {
-    return view('admin.index');
-});
+
 
 
 // Auth
@@ -29,3 +28,9 @@ Route::get('/logout',[auth::class,'logout']);
 
 // kasir
 Route::get('/kasir',[KasirController::class,'index'])->name('kasir.index');
+
+
+// Admin
+
+Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
+Route::get('/admin/kasir',[AdminController::class,'kasir'])->name('admin.kasir');

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,28 +11,30 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
 </head>
+
 <body>
+  @include('partials.navbar')
 
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-  <style>
-    body{
-        font-family:'Poppins',sans-serif;
+            <style>
+                body {
+                    font-family: 'Poppins', sans-serif;
 
-    }
-  </style>
-          @include('partials.navbar')
-
+                }
+            </style>
 
 
-          @yield('kasir')
+
+            @yield('layout')
 
         </div>
 
 
-      </div>
+    </div>
 
     <script src="/boostrap/js/bootstrap.min.js"></script>
 
 </body>
+
 </html>

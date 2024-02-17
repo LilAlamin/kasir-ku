@@ -10,5 +10,7 @@ class penjualan extends Model
     use HasFactory;
     protected $table = 'penjualan';
 
-        
+    public function user(){
+        return $this->belongsTo(user::class, 'id'); 
+    }
 }

@@ -15,8 +15,8 @@
             <h3 style="font-family: 'Poppins',sans-serif;">Selamat Datang, {{ $userName }}</h3>
             <br><div class="card mt-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
-                    <h6 class="card-title mb-0">Daftar Transaksi</h6>
-                    <button class="btn btn-primary">Download Laporan</button>
+                    <h6 class="card-title mb-0">Daftar Petugas Kasir</h6>
+                    <a href="#" class="card-title mb-0 btn btn-success">Tambah Petugas Kasir</a>
                 </div>
 
                 <div class="card-body">
@@ -24,12 +24,21 @@
                         <thead>
                             <tr>
                                 <th>No</th>
-                                <th>Tanggal Transaksi</th>
-                                <th>Pelayanan Kasir</th>
+                                <th>Nama Kasir</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
+                            @foreach ($kasir as $kas)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{$kas->username}}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-warning">Edit</a>
+                                        <a href="#" class="btn btn-danger">Hapus</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                             <!-- Data penjualan disini -->
                         </tbody>
                     </table>

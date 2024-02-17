@@ -25,13 +25,13 @@
             @endphp
             @if($user_type == 'admin')
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Beranda</a>
+                    <a class="nav-link active" aria-current="page" href="{{ Route('admin.index') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="#">Produk</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Kasir</a>
+                    <a class="nav-link active" aria-current="page" href="{{ Route('admin.kasir') }}">Kasir</a>
                 </li>
                 <li class="nav-item" style="margin-left: 68pc;">
                     <a class="nav-link active" aria-current="page" href="/logout">Logout</a>
