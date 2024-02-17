@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\auth;
+use App\Http\Controllers\KasirController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,14 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/wal', function () {
-    return view('kasir.index');
-});
-Route::get('/pelanggan', function () {
-    return view('tes');
+
+Route::get('/admin', function () {
+    return view('admin.index');
 });
 
 
 // Auth
 Route::get('/',[auth::class,'login']);
 Route::post('/',[auth::class,'masuk'])->name('login');
+Route::get('/logout',[auth::class,'logout']);
+
+
+// kasir
+Route::get('/kasir',[KasirController::class,'index'])->name('kasir.index');

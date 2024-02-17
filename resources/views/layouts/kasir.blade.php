@@ -7,21 +7,28 @@
     <title>Selamat Datang</title>
     <link rel="stylesheet" href="/boostrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
 </head>
 <body>
-    
+
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-  
+  <style>
+    body{
+        font-family:'Poppins',sans-serif;
+
+    }
+  </style>
           @include('partials.navbar')
-  
-          
-  
+
+
+
           @yield('kasir')
-        
+
         </div>
-  
-  
+
+
       </div>
 
     <script src="/boostrap/js/bootstrap.min.js"></script>

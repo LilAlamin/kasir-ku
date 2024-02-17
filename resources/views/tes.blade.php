@@ -7,6 +7,6 @@
     <title>Document</title>
 </head>
 <body>
-    iki halaman pelanggan
+    iki halaman admin
 </body>
 </html>
