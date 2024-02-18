@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('password');
             $table->enum('user_type', ['kasir', 'admin'])->default('kasir');
+            $table->boolean('IsDelete')->default(0);
             $table->timestamps();
         });
     }
