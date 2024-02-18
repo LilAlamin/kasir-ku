@@ -54,9 +54,9 @@
                                             <td>Rp. {{ number_format($pro->harga, 0, ',', '.') }}</td>
                                             <td>{{ $pro->stok }}</td>
                                             <td>
-                                                <a href=""
+                                                <a href="{{ Route('admin.produk_edit',$pro->id) }}"
                                                     class="btn btn-warning">Edit</a>
-                                                <a href=""
+                                                <a href="{{ Route('admin.destroy_produk',$pro->id) }}"
                                                     class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>

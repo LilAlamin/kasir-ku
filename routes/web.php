@@ -45,4 +45,8 @@ Route::get('/admin/kasir/{id}/delete', [AdminController::class, 'destroy_kasir']
 Route::get('/produk',[AdminController::class,'product'])->name('admin.produk');
 Route::get('/produk/create',[AdminController::class,'create_product'])->name('admin.produk_create');
 Route::post('/produk',[AdminController::class,'store_product'])->name('admin.produk_store');
+Route::get('/produk/edit-produk/{id}',[AdminController::class,'edit_product'])->name('admin.produk_edit');
+Route::put('/produk/update-produk/{id}',[AdminController::class,'update_product'])->name('admin.produk_update');
+Route::get('/produk/{id}/delete', [AdminController::class, 'destroy_product'])->name('admin.destroy_produk');
+
 
