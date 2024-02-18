@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\produk;
 use App\Models\User;
 use App\Models\users;
 use Illuminate\Http\Request;
@@ -34,9 +35,25 @@ class AdminController extends Controller
     
         return view('admin.kasir', ['kasir' => $kasir]);
     }
+    public function product(Request $req){
+        if (!$req->session()->has('user_id') || $req->session()->get('user_type') !== 'admin') {
+            // Redirect jika tidak ada sesi user_id atau user_type bukan admin
+            return redirect('404')->with('error', 'Anda tidak diizinkan untuk mengakses halaman ini.');
+        }
+    
+        // Ambil semua pengguna yang bertipe "kasir"
+        $produk = produk::where('IsDelete', 0)->paginate(5);
+
+
+    
+        return view('admin.produk',compact('produk'));
+    }
 
     public function create_kasir(){
         return view('admin.tambah_kasir');
+    }
+    public function create_product(){
+        return view('admin.tambah_produk');
     }
 
     public function store_kasir(Request $req){
@@ -54,6 +71,16 @@ class AdminController extends Controller
     
         return redirect()->route('admin.kasir')->with('success', "Data Kasir Berhasil Ditambahkan");
     }
+    public function store_product(Request $req){
+    
+        produk::create([
+            'nama_produk' => $req->nama_produk,
+            'harga' => $req->harga,
+            'stok' => $req->stok
+        ]);
+    
+        return redirect()->route('admin.produk')->with('success', "Data Produk Berhasil Ditambahkan");
+    }
     
 
     public function edit_kasir($id){
@@ -61,7 +88,7 @@ class AdminController extends Controller
         $kasir = users::findOrFail($id);
         
         // Tampilkan halaman edit dengan data pengguna yang ditemukan
-        return view('admin.edit', compact('kasir'));
+        return view('admin.edit_kasir', compact('kasir'));
     }
 
     public function update_kasir(Request $req, $id){

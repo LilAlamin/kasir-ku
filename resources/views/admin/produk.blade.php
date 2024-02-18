@@ -29,9 +29,8 @@
 
                 <div class="card mt-4">
                     <div class="card-header d-flex justify-content-between align-items-center">
-                        <h6 class="card-title mb-0">Daftar Petugas Kasir</h6>
-                        <a href="{{ Route('admin.create_kasir') }}" class="card-title mb-0 btn btn-success">Tambah Petugas
-                            Kasir</a>
+                        <h6 class="card-title mb-0">Daftar Produk</h6>
+                        <a href="{{ Route('admin.produk_create') }}" class="card-title mb-0 btn btn-success">Tambah Produk</a>
                     </div>
 
                     <div class="card-body">
@@ -39,21 +38,25 @@
                             <thead>
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kasir</th>
+                                    <th>Nama Barang</th>
+                                    <th>Harga Barang</th>
+                                    <th>Stok Barang</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $counter = ($kasir->currentPage() - 1) * $kasir->perPage() + 1; @endphp
-                                @foreach ($kasir as $kas)
-                                    @if ($kas->IsDelete == 0)
+                                @php $counter = ($produk->currentPage() - 1) * $produk->perPage() + 1; @endphp
+                                @foreach ($produk as $pro)
+                                    @if ($pro->IsDelete == 0)
                                         <tr>
                                             <td>{{ $counter++ }}</td>
-                                            <td>{{ $kas->username }}</td>
+                                            <td>{{ $pro->nama_produk }}</td>
+                                            <td>Rp. {{ number_format($pro->harga, 0, ',', '.') }}</td>
+                                            <td>{{ $pro->stok }}</td>
                                             <td>
-                                                <a href="{{ route('admin.edit_kasir', $kas->id) }}"
+                                                <a href=""
                                                     class="btn btn-warning">Edit</a>
-                                                <a href="{{ Route('admin.destroy_kasir', $kas->id) }}"
+                                                <a href=""
                                                     class="btn btn-danger">Hapus</a>
                                             </td>
                                         </tr>
@@ -63,7 +66,7 @@
                             </tbody>
 
                         </table>
-                        {{ $kasir->links() }}
+                        {{ $produk->links() }}
 
                     </div>
                 </div>

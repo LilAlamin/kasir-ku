@@ -28,7 +28,7 @@
                     <a class="nav-link active" aria-current="page" href="{{ Route('admin.index') }}">Beranda</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Produk</a>
+                    <a class="nav-link active" aria-current="page" href="{{ Route('admin.produk') }}">Produk</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" aria-current="page" href="{{ Route('admin.kasir') }}">Kasir</a>
