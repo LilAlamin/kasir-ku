@@ -9,8 +9,8 @@
                     $userId = session('user_id');
 
                     // Mendapatkan username berdasarkan user_id
-                    $user = \App\Models\User::find($userId);
-                    $userName = $user ? $user->name : null;
+                    $user = \App\Models\Users::find($userId);
+                    $userName = $user ? $user->username : null;
                 @endphp
                 <h3 style="font-family: 'Poppins',sans-serif;">Selamat Datang {{ $userName }}</h3>
                 <br>
