@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\auth;
 use App\Http\Controllers\KasirController;
+use App\Http\Controllers\PenjualanController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +28,12 @@ Route::get('/logout',[auth::class,'logout']);
 
 
 // kasir
-Route::get('/kasir',[KasirController::class,'index'])->name('kasir.index');
+Route::get('/kasir', [PenjualanController::class,'index'])->name('kasir.index');
+Route::get('/kasir/tambah-transaksi', [PenjualanController::class,'create'])->name('kasir.create');
+Route::post('/kasir/tambah-transaksi', [PenjualanController::class,'store'])->name('kasir.store');
+Route::get('/kasir/detail-transaksi/{id}', [PenjualanController::class,'show'])->name('kasir.show');
+Route::get('/penjualan/{id}/pdf',[PenjualanController::class,'generatePDF'])->name('penjualan.cetak');
+
 
 
 // Admin
