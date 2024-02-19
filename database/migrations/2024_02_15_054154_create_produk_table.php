@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
             $table->string('nama_produk');
-            $table->decimal('harga');
+            $table->decimal('harga',10);
             $table->integer('stok');
             $table->boolean('IsDelete')->default(0);
             $table->timestamps();
