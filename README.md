@@ -7,17 +7,17 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+## About Kasirku
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Kasirku is a simple cashier application designed to streamline the process of managing sales transactions. Built with ease of use in mind, Kasirku offers an intuitive interface and essential features to help businesses efficiently handle their point-of-sale operations. Key features of Kasirku include:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Simple, fast transaction management**: Easily create, edit, and track sales transactions with Kasirku's user-friendly interface.
+- **Efficient inventory management**: Keep track of product stocks and inventory levels to ensure smooth operations.
+- **Secure user authentication**: Kasirku provides secure user authentication to safeguard sensitive business data.
+- **Flexible reporting**: Generate detailed reports on sales, revenue, and inventory to gain valuable insights into business performance.
+- **Customizable settings**: Tailor Kasirku to suit your business needs with customizable settings and configurations.
+
+With Kasirku, managing your sales transactions has never been easier. Experience the convenience and efficiency of Kasirku for your business today!
 
 Laravel is accessible, powerful, and provides tools required for large, robust applications.
 
