@@ -13,7 +13,7 @@ class penjualan extends Model
     protected $fillable = ['nama_pelanggan', 'id_user', 'total_harga'];
 
     public function user(){
-        return $this->belongsTo(user::class, 'id'); 
+        return $this->belongsTo(users::class, 'id_user'); 
     }
 
     public function details()

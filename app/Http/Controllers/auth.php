@@ -17,6 +17,7 @@ class auth extends Controller
 
     public function masuk(Request $req){
         $data = DB::table('user')
+        ->where('IsDelete',0)
         ->where(function ($query) use ($req) {
             $query->where('username', '=', $req->username);
         })

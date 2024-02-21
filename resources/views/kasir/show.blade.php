@@ -7,8 +7,10 @@
                 <div class="card mt-4">
                     <div class="card-header">
                         <h5 class="card-title mb-0">Detail Penjualan</h5>
-                        <a href="{{ route('penjualan.cetak', ['id' => $penjualan->id]) }}" class="btn btn-secondary btn-sm">Cetak PDF</a>
-
+                        <a href="{{ route('penjualan.cetak', ['id' => $penjualan->id]) }}" class="btn btn-secondary btn-sm">
+                            <i class="bi bi-printer"></i> Cetak PDF
+                        </a>
+                          
                     </div>
                     <div class="card-body">
                         <div class="row">
@@ -24,7 +26,7 @@
                                 <p><strong>Nama Pelanggan:</strong> {{ $penjualan->nama_pelanggan }}</p>
                             </div>
                             <div class="col-md-6 text-md-right">
-                                <p><strong>Total Harga:</strong> {{ $penjualan->total_harga }}</p>
+                                <p><strong>Total Harga:</strong> Rp. {{ number_format($penjualan->total_harga, 0, ',', '.') }}</p>
                             </div>
                         </div>
                         <div class="table-responsive mt-4">
@@ -44,8 +46,9 @@
                                             <td>{{ $index + 1 }}</td>
                                             <td>{{ $detail->produk->nama_produk }}</td>
                                             <td>{{ $detail->jumlah_produk }}</td>
-                                            <td>{{ $detail->produk->harga }}</td>
-                                            <td>{{ $detail->sub_total }}</td>
+                                            <td>Rp. {{ number_format($detail->produk->harga, 0, ',', '.') }}</td>
+                                            <td>Rp. {{ number_format($detail->sub_total, 0, ',', '.') }}</td>
+                                            
                                         </tr>
                                     @empty
                                         <tr>

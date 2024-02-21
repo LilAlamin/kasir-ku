@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="/boostrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="{{ asset('css/fonts.css') }}">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="/node_modules/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap-icons.css') }}" rel="stylesheet">
+
 
 </head>
 

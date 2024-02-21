@@ -1,0 +1,5 @@
+composer require barryvdh/laravel-dompdf
+
+dinggo instal pdf
+
+npm i bootstrap-icons

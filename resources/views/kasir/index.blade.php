@@ -32,15 +32,18 @@
                             </thead>
                             <tbody>
                                 @foreach ($penjualans as $key => $penjualan)
-                                    <tr>
-                                        <td>{{ $key + 1 }}</td>
-                                        <td>{{ $penjualan->nama_pelanggan }}</td>
-                                        <td>{{ $penjualan->total_harga }}</td>
-                                        <td>
-                                            <a href="{{ route('kasir.show', $penjualan->id) }}" class="btn btn-primary">Detail</a>
-                                            <!-- Anda dapat menambahkan tombol untuk mengedit atau menghapus penjualan di sini -->
-                                        </td>
-                                    </tr>
+                                    @if ($penjualan->IsDelete == 0)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $penjualan->nama_pelanggan }}</td>
+                                            <td>{{ $penjualan->total_harga }}</td>
+                                            <td>
+                                                <a href="{{ route('kasir.show', $penjualan->id) }}"
+                                                    class="btn btn-primary">Detail</a>
+                                                <!-- Anda dapat menambahkan tombol untuk mengedit atau menghapus penjualan di sini -->
+                                            </td>
+                                        </tr>
+                                    @endif
                                 @endforeach
                             </tbody>
                         </table>

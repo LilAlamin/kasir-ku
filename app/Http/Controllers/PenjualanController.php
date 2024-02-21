@@ -107,11 +107,11 @@ public function generatePDF($id)
         'details' => $penjualan->details, // Misalkan ini adalah relasi details dari penjualan
     ];
 
-    // Load view penjualan.pdf dengan data yang telah disiapkan
-    $pdf = FacadePdf::loadView('kasir.pdf', compact('data'));
+    // Load view penjualan.blade.php dengan data yang telah disiapkan
+    $pdf = FacadePdf::loadView('admin.pdf', compact('data'));
 
     // Download PDF
-    return $pdf->stream('penjualan.pdf');
+    return $pdf->stream('admin.pdf');
 }
 
 

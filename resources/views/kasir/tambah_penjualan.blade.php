@@ -2,25 +2,24 @@
 
 @section('layout')
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
             @if(session('error'))
             <div id="errorAlert" class="alert alert-danger">
                 {{ session('error') }}
             </div>
-        @endif
-        
-        <script>
-            // Menghilangkan alert setelah 2 detik
-            setTimeout(function() {
-                var errorAlert = document.getElementById('errorAlert');
-                if (errorAlert) {
-                    errorAlert.style.display = 'none';
-                }
-            }, 2000);
-        </script>
-        
-            <div class="card mt-4">
+            @endif
+
+            <script>
+                setTimeout(function() {
+                    var errorAlert = document.getElementById('errorAlert');
+                    if (errorAlert) {
+                        errorAlert.style.display = 'none';
+                    }
+                }, 2000);
+            </script>
+
+            <div class="card">
                 <div class="card-header">
                     <h5 class="card-title mb-0">Form Tambah Transaksi</h5>
                 </div>
@@ -40,8 +39,9 @@
                                 @endforeach
                             </select>
                         </div>
-                        <div id="produk-details">
-                            <!-- Product details will be displayed here -->
+                        <div class="form-group">
+                            <label for="produk_details">Detail Produk:</label>
+                            <div id="produk-details"></div>
                         </div>
                         <div class="form-group">
                             <label for="total_harga">Total Harga:</label>
@@ -55,84 +55,122 @@
     </div>
 </div>
 <style>
-    .input-group-append {
-        position: absolute;
-        right: 0;
-        top: 0;
-        height: 100%;
-    }
-
     .produk-item {
-        border-bottom: 1px solid #ccc;
-        padding-bottom: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
         margin-bottom: 10px;
     }
-
-    .produk-item label {
-        font-weight: bold;
-    }
-
-    .produk-item input {
-        width: 100px;
+    .selected {
+        background-color: #007bff !important;
+        color: #fff;
     }
 </style>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const produkSelect = document.getElementById('produk_id');
-        const produkDetails = document.getElementById('produk-details');
-        const totalHargaInput = document.getElementById('total_harga');
+   document.addEventListener('DOMContentLoaded', function() {
+    const produkSelect = document.getElementById('produk_id');
+    const produkDetails = document.getElementById('produk-details');
+    const totalHargaInput = document.getElementById('total_harga');
 
-        produkSelect.addEventListener('change', function() {
-            let selectedOptions = produkSelect.selectedOptions;
-            produkDetails.innerHTML = ''; // Bersihkan detail produk sebelum menambahkan yang baru
-            let totalHarga = 0;
+    // Fungsi untuk menambahkan atau menghapus kelas 'selected' pada card
+    function toggleCardSelection(card) {
+        card.classList.toggle('selected');
+    }
 
-            for (let option of selectedOptions) {
-                let hargaAwal = parseFloat(option.getAttribute('data-harga'));
+    // Fungsi untuk mengatur opsi produk terpilih berdasarkan card yang diklik
+    function toggleOptionSelection(option) {
+        option.selected = !option.selected;
+    }
 
-                let produkItem = document.createElement('div');
-                produkItem.classList.add('produk-item');
-
-                let label = document.createElement('label');
-                label.innerHTML = option.text + ' - Harga: ' + hargaAwal.toFixed(2);
-
-                let jumlahProdukInput = document.createElement('input');
-                jumlahProdukInput.setAttribute('type', 'text');
-                jumlahProdukInput.setAttribute('name', 'jumlah_produk[]');
-                jumlahProdukInput.setAttribute('class', 'form-control');
-                jumlahProdukInput.setAttribute('placeholder', 'Jumlah Produk');
-
-                let subTotalInput = document.createElement('input');
-                subTotalInput.setAttribute('type', 'text');
-                subTotalInput.setAttribute('name', 'sub_total[]');
-                subTotalInput.setAttribute('class', 'form-control');
-                subTotalInput.setAttribute('readonly', 'readonly');
-
-                jumlahProdukInput.addEventListener('input', function() {
-                    let jumlahProduk = parseFloat(jumlahProdukInput.value);
-                    let subTotal = hargaAwal * jumlahProduk;
-                    subTotalInput.value = subTotal.toFixed(2);
-
-                    totalHarga = 0;
-                    document.querySelectorAll('[name="sub_total[]"]').forEach(input => {
-                        totalHarga += parseFloat(input.value);
-                    });
-                    totalHargaInput.value = totalHarga.toFixed(2);
-                });
-
-                let jumlahProdukLabel = document.createElement('label');
-                jumlahProdukLabel.innerHTML = 'Jumlah Produk:';
-                let subTotalLabel = document.createElement('label');
-                subTotalLabel.innerHTML = 'Sub Total:';
-
-                produkItem.appendChild(label);
-                produkItem.appendChild(jumlahProdukLabel);
-                produkItem.appendChild(jumlahProdukInput);
-                produkItem.appendChild(subTotalLabel);
-                produkItem.appendChild(subTotalInput);
-                produkDetails.appendChild(produkItem);
-            }
+    // Menambahkan event listener pada setiap card produk
+    const produkCards = document.querySelectorAll('.card.produk-item');
+    produkCards.forEach(function(card) {
+        card.addEventListener('click', function() {
+            toggleCardSelection(card);
+            const index = parseInt(card.getAttribute('data-index'));
+            const option = produkSelect.options[index];
+            toggleOptionSelection(option);
         });
     });
+
+    // Menangani perubahan pada opsi produk yang dipilih
+    produkSelect.addEventListener('change', function() {
+        let selectedOptions = produkSelect.selectedOptions;
+        produkDetails.innerHTML = ''; // Bersihkan detail produk sebelum menambahkan yang baru
+        let totalHarga = 0;
+
+        for (let option of selectedOptions) {
+            let hargaAwal = parseFloat(option.getAttribute('data-harga'));
+
+            let produkItem = document.createElement('div');
+            produkItem.classList.add('card', 'produk-item');
+            produkItem.setAttribute('data-index', option.index); // Menambahkan atribut untuk menyimpan indeks opsi
+
+            let cardBody = document.createElement('div');
+            cardBody.classList.add('card-body');
+
+            let label = document.createElement('h5');
+            label.classList.add('card-title');
+            label.textContent = option.text;
+
+            let hargaText = document.createElement('p');
+            hargaText.classList.add('card-text');
+            hargaText.textContent = 'Harga: Rp. ' + hargaAwal.toFixed(2);
+
+            let jumlahProdukInput = document.createElement('input');
+            jumlahProdukInput.setAttribute('type', 'number');
+            jumlahProdukInput.setAttribute('name', 'jumlah_produk[]');
+            jumlahProdukInput.setAttribute('class', 'form-control');
+            jumlahProdukInput.setAttribute('placeholder', 'Jumlah Produk');
+            jumlahProdukInput.setAttribute('min', '1'); // Set nilai minimum ke 1
+
+            let subTotalInput = document.createElement('input');
+            subTotalInput.setAttribute('type', 'text');
+            subTotalInput.setAttribute('name', 'sub_total[]');
+            subTotalInput.setAttribute('class', 'form-control');
+            subTotalInput.setAttribute('readonly', 'readonly');
+
+            jumlahProdukInput.addEventListener('input', function() {
+                let jumlahProduk = parseFloat(jumlahProdukInput.value);
+                if (jumlahProduk < 1) { // Validasi jika jumlah produk kurang dari 1
+                    jumlahProdukInput.value = 1;
+                    jumlahProduk = 1;
+                }
+                let subTotal = hargaAwal * jumlahProduk;
+                subTotalInput.value = subTotal.toFixed(2);
+
+                totalHarga = 0;
+                document.querySelectorAll('[name="sub_total[]"]').forEach(input => {
+                    totalHarga += parseFloat(input.value);
+                });
+                totalHargaInput.value = totalHarga.toFixed(2);
+            });
+
+            cardBody.appendChild(label);
+            cardBody.appendChild(hargaText);
+            cardBody.appendChild(jumlahProdukInput);
+            cardBody.appendChild(subTotalInput);
+            produkItem.appendChild(cardBody);
+            produkDetails.appendChild(produkItem);
+        }
+    });
+
+    // Menangani pengiriman formulir
+    const checkoutButton = document.querySelector('form button[type="submit"]');
+    checkoutButton.addEventListener('click', function(event) {
+        const jumlahProdukInputs = document.querySelectorAll('[name="jumlah_produk[]"]');
+        let isInvalid = false;
+        jumlahProdukInputs.forEach(function(input) {
+            if (parseFloat(input.value) === 0) {
+                isInvalid = true;
+            }
+        });
+        if (isInvalid) {
+            event.preventDefault(); // Mencegah pengiriman formulir jika ada jumlah produk yang 0
+            alert('Jumlah produk tidak boleh 0');
+        }
+    });
+});
+
+
 </script>
 @endsection

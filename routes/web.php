@@ -39,6 +39,10 @@ Route::get('/penjualan/{id}/pdf',[PenjualanController::class,'generatePDF'])->na
 // Admin
 
 Route::get('/admin',[AdminController::class,'index'])->name('admin.index');
+Route::get('/admin/detail-penjualan/{id}',[AdminController::class,'show'])->name('admin.show');
+Route::get('/admin/penjualan/pdf', [AdminController::class, 'generatePDF'])->name('admin.pdf');
+
+
 // admin Kasir
 Route::get('/admin/kasir',[AdminController::class,'kasir'])->name('admin.kasir');
 Route::get('/admin/kasir/create',[AdminController::class,'create_kasir'])->name('admin.create_kasir');
